@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div, ul, li {
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #outer {
+            margin: 50px auto;
+            position: relative;
+            width: 1000px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        #outer ul {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 5000px;
+            height: 300px;
+
+        }
+
+        #outer ul li {
+            width: 1000px;
+            float: left;
+            height: 300px;
+            font-size: 40px;
+            color: #e1e1e1;
+            text-align: center;
+            line-height: 300px;
+        }
+
+        #inner li:nth-last-of-type(2) {
+            background: darkorange;
+        }
+
+        #inner li:nth-last-of-type(3) {
+            background: darkgoldenrod;
+        }
+
+        #inner li:nth-last-of-type(4) {
+            background: darkcyan;
+        }
+
+        #tip {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+        }
+
+        #tip span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: darkgrey;
+            color: #e2e4ed;
+            line-height: 20px;
+            text-align: center;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        #outer a {
+            text-decoration: none;
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: darkkhaki;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        #outer a.btnLeft {
+            top: 200px;
+            left: 100px;
+        }
+
+        #outer a.btnRight {
+            top: 200px;
+            right: 100px;
+        }
+
+        #tip span.bg {
+            background: darkorchid;
+        }
+    </style>
+</head>
+<body>
+<div id="outer">
+    <ul id="inner">
+        <li style="background: darkgreen">一</li>
+        <li>二</li>
+        <li>三</li>
+        <li>四</li>
+    </ul>
+    <div id="tip">
+        <span class="bg">1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+    </div>
+    <a href="javascript:;" class="btnLeft">左</a>
+    <a href="javascript:;" class="btnRight">右</a>
+</div>
+</body>
+</html>
+<script src="utils.js"></script>
+<script src="tween.js"></script>
+<script>
+    var banner = document.getElementById("outer");
+    var oIanner = document.getElementById("outer").getElementsByTagName("ul")[0];
+    var first = document.getElementsByTagName("li")[0];
+    var btn = document.getElementsByTagName("a");
+    var oDiv = first.cloneNode(true);
+    oIanner.appendChild(oDiv);
+    var oSpan = document.getElementsByTagName("span");
+    var step = 0, autoTime = null;
+    //单击实现焦点
+    ~function () {
+        for (var i = 0; i < oSpan.length; i++) {
+            var curSpan = oSpan[i];
+            curSpan.index = i;
+            curSpan.onclick = function () {
+                step = this.index;
+                changeTip();
+                animate(oIanner, {left: -step * 1000}, 600);
+            }
+        }
+    }();
+    //焦点的切换
+    function changeTip() {
+        var tempStep = step >= oSpan.length ? 0 : step;
+        for (var i = 0; i < oSpan.length; i++) {
+            var curLi = oSpan[i];
+            i === tempStep ? oSpan[i].className = "bg" : oSpan[i].className = "";
+        }
+    }
+    autoTime = window.setInterval(left, 1000);
+    function left() {
+        if (step == 4) {
+            step = 0;
+            oIanner.style.left = 0;
+        }
+        step++;
+        animate(oIanner, {left: -step * 1000}, 600);
+        changeTip()
+    }
+    function right() {
+        if (step == 0) {
+            step = 4;
+            oIanner.style.left = "-" + step * 1000 + "px";
+        }
+        step--;
+        animate(oIanner, {left: -step * 1000}, 600);
+        changeTip()
+    }
+    btn[0].onclick = right;
+    btn[1].onclick = left;
+    banner.onmousemove = function () {
+        window.clearInterval(autoTime)
+    }
+    banner.onmouseout = function () {
+        autoTime = window.setInterval(left, 1000);
+    }
+</script>
