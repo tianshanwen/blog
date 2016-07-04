@@ -56,8 +56,7 @@ html, body {
     overflow: hidden;
 }
 
-/*以上公共样式*/
-/*以iphone5为例，320*568*/
+
 .page1{
     position: relative;
     width: 100%;
@@ -273,19 +272,6 @@ html, body {
     background-size: 100% 100%;
     opacity: 0;
 }
-/*.page1 .a15{
-    width:0.56rem;
-    height: 5.12rem;
-    left: 0.55rem;
-    top: 1.75rem;
-    position: absolute;
-    background: url("./image/20.png")no-repeat;
-    background-size: 100% 100%;
-    transform: rotate(55deg);
-    opacity: 1;
-}*/
-/*样式*/
-/*动画*/
 #page1 .bg{
    -webkit-animation: moveDown 1000ms ease 1000ms both ;
     animation: moveDown 1000ms ease 1000ms both ;
@@ -369,7 +355,6 @@ html, body {
   }
 }
 @keyframes moveUp {
-    /*超出一屏的高度隐藏，当动画执行的时候从超出位置进入舞台*/
   0% {
     -webkit-transform: translateY(100%);
     -moz-transform: translateY(100%);
@@ -461,7 +446,7 @@ html, body {
         transform: scale(1);
     }
 }
-/*文字的颜色*/
+
 .page1 .exOpText1{
     position: absolute;
     color: palevioletred;
@@ -609,8 +594,8 @@ html, body {
   border: 0.03rem solid #fff;
   margin-left: -0.6rem;
   border-radius: 50%;
-  background:-webkit-linear-gradient(left,#ace,#f96);/*new gradient for Webkit*/
-  background:linear-gradient(left,#ace,#f96);/*new gradient for Webkit*/
+  background:-webkit-linear-gradient(left,#ace,#f96);
+  background:linear-gradient(left,#ace,#f96);
   font-size: .32rem;
   opacity: 0;
 }
@@ -656,11 +641,6 @@ html, body {
     -webkit-transform: translate3d(0, 0, 0);
   }
 }
-/*第一页完*/
-
-/*第二页开始*/
-
-
 .page2{
   position: relative;
   width: 100%;
@@ -674,7 +654,7 @@ html, body {
 
 
 
-/*样式*/
+
 .page2 .b1{
 position: absolute;
     width:1.94rem;
@@ -1033,9 +1013,6 @@ position: absolute;
     z-index: 1;
     opacity: 0;
 }
-/*样式*/
-
-/*动画*/
 
 #page2 .b1{
     -webkit-animation: moveDown 1000ms ease 800ms both ;
